@@ -6,7 +6,7 @@ from musicalapp.models import MusicalWork, Contributor
 
 
 class Command(BaseCommand):
-    help = 'Ingest Musical Work Data into Database tables'
+    help = 'Reconciled Work Data into Database'
 
     def add_arguments(self, parser):
         parser.add_argument('filepath', type=str, help='File path for csv file')
