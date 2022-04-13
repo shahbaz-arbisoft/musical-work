@@ -8,9 +8,6 @@ from musicalapp.models import Work
 from musicalapp.serializers import WorkSerializer
 
 
-# Create your views here.
-
-
 class WorkView(APIView):
     def get_object(self, ISWC):
         try:

@@ -1,9 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
-
 class Work(models.Model):
     title = models.CharField(max_length=300, help_text='Work Title', verbose_name='Work Title')
     ISWC = models.CharField(max_length=250, unique=True, db_index=True,
@@ -14,9 +11,6 @@ class Work(models.Model):
     class Meta:
         ordering = ['title']
         verbose_name_plural = "Works"
-        # indexes = [
-        #     models.Index(fields=['ISWC', ])
-        # ]
 
     def __str__(self):
         return self.title

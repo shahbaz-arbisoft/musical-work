@@ -1,12 +1,13 @@
 import csv
 
 from django.core.management.base import BaseCommand, CommandError
+from django.db.utils import IntegrityError
 
 from musicalapp.models import Work, Contributor
 
 
 class Command(BaseCommand):
-    help = 'Ingest Musical Work Data into DB table'
+    help = 'Ingest Musical Work Data into Database tables'
 
     def add_arguments(self, parser):
         parser.add_argument('filepath', type=str, help='File path for csv file')
@@ -16,28 +17,19 @@ class Command(BaseCommand):
         try:
             with open(file_path) as csv_file:
                 csv_dict_reader = csv.DictReader(csv_file, delimiter=',')
-                field_names = next(csv_dict_reader)
+                row_count = 0
                 for row in csv_dict_reader:
-                    print(row)
-                    # contributors = [meta.strip() for meta in row['contributors'].split('|')]
-                    # contributors_lst = list()
-                    # for contributor in contributors:
-                    #     obj, created = Contributor.objects.get_or_create(name=contributor)
-                    #     contributors_lst.append(obj)
-                    #     print(contributors_lst)
-                    #
-                    # obj, created = Work.objects.update_or_create(title=row['title'], ISWC=row['iswc'])
-                    # obj.contributors.bulk_update(contributors_lst, ['contributors'])
-                    # print(dir(obj))
-                    # print(dir(obj.contributors))
-
-                    # obj.contributors.set.add(contributors_lst)
-                    # obj.save()
-                    # Work.objects.bulk_update(contributors_lst, ['contributors'])
-
+                    try:
+                        work_obj, _ = Work.objects.update_or_create(title=row['title'], defaults={'ISWC': row['iswc']})
+                    except IntegrityError:
+                        continue
+                    contributors = [Contributor.objects.get_or_create(name=contributor.strip())[0] for contributor in
+                                    row['contributors'].split('|')]
+                    work_obj.contributors.add(*contributors)
+                    row_count += 1
             self.stdout.write(
                 self.style.SUCCESS(
-                    f'{1} entries added to Musical Work'
+                    f'{row_count} rows executed from this file'
                 )
             )
         except FileNotFoundError:
