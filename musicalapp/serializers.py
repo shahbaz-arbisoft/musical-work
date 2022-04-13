@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from musicalapp.models import Work
+from musicalapp.models import MusicalWork
 
 
 class WorkSerializer(serializers.ModelSerializer):
@@ -11,5 +11,5 @@ class WorkSerializer(serializers.ModelSerializer):
         return data
 
     class Meta:
-        model = Work
+        model = MusicalWork
         fields = ('ISWC', 'title')

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from musicalapp.models import Work, Contributor
+from musicalapp.models import MusicalWork, Contributor
 
-admin.site.register(Work)
+admin.site.register(MusicalWork)
 admin.site.register(Contributor)

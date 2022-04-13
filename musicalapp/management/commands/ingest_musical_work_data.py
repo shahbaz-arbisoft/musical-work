@@ -3,7 +3,7 @@ import csv
 from django.core.management.base import BaseCommand, CommandError
 from django.db.utils import IntegrityError
 
-from musicalapp.models import Work, Contributor
+from musicalapp.models import MusicalWork, Contributor
 
 
 class Command(BaseCommand):
@@ -20,7 +20,8 @@ class Command(BaseCommand):
                 row_count = 0
                 for row in csv_dict_reader:
                     try:
-                        work_obj, _ = Work.objects.update_or_create(title=row['title'], defaults={'ISWC': row['iswc']})
+                        work_obj, _ = MusicalWork.objects.update_or_create(title=row['title'],
+                                                                           defaults={'ISWC': row['iswc']})
                     except IntegrityError:
                         continue
                     contributors = [Contributor.objects.get_or_create(name=contributor.strip())[0] for contributor in
