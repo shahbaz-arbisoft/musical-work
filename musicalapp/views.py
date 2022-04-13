@@ -4,15 +4,15 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from musicalapp.models import Work
+from musicalapp.models import MusicalWork
 from musicalapp.serializers import WorkSerializer
 
 
 class WorkView(APIView):
     def get_object(self, ISWC):
         try:
-            return Work.objects.get(ISWC=ISWC)
-        except Work.DoesNotExist:
+            return MusicalWork.objects.get(ISWC=ISWC)
+        except MusicalWork.DoesNotExist:
             raise Http404
 
     def get(self, request, ISWC=None):
