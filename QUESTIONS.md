@@ -1,6 +1,6 @@
-# **Works Single View**
+# Works Single View
 
-### **Part-1:**
+### Part-1:
 
 **1- Describe briefly the matching and reconciling method chosen?**
 
@@ -38,7 +38,7 @@ ingest our data.
 and ingest the file data in the database can also be checked out.
 ###
 
-### **Part-2**
+### Part-2
 
 **1- Imagine that the Single View has 20 million musical works, do you think your solution would have a similar response time?**
 
