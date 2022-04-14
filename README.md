@@ -14,7 +14,7 @@ staying in the project directory by this command.
 **requirements.txt** file has all the external dependencies that are used or need to run your code.
 
 After that, update your postgres database credentials 
-and database name in settings.py file located in **musicalwork/** directory.
+and database name in **settings.py** file located in **musicalwork/** directory.
 And create your database tables by running below commands.
 
 	python manage.py makemigrations
