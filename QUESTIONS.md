@@ -25,4 +25,4 @@ Yes, so far my solution will give a similar response as I have applied indexing 
 
 **2- If not, what would you do to improve it?**
 
-Yes, We can improve it by using the ELK stack. I have not worked on it but I have read about it. It is actually Elasticsearch, Logstasg, Kibana to make the searches on an advanced level.
+Yes, We can improve it by using the ELK stack. I have not worked on it but I have read about it. It is actually Elasticsearch, Logstash, Kibana to make the searches on an advanced level.
