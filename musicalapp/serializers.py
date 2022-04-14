@@ -3,7 +3,7 @@ from rest_framework import serializers
 from musicalapp.models import MusicalWork
 
 
-class WorkSerializer(serializers.ModelSerializer):
+class MusicalWorkSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
