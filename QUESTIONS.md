@@ -20,7 +20,7 @@ There is also an option of s3 bucket and a FTP server from where we read the fil
 
 **1- Imagine that the Single View has 20 million musical works, do you think your solution would have a similar response time?**
 
-Yes, so far my solution will give a similar response as I have applied indexing on search a column and also I have used memory caching to store our results that are not updating frequently.
+Yes, so far my solution will give a similar response as I have applied indexing on search column and also I have used memory caching to store our results that are not updating frequently.
 
 
 **2- If not, what would you do to improve it?**
