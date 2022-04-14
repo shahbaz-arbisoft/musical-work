@@ -1,4 +1,4 @@
-## *Instructions on how to execute your code:*
+## Instructions on how to execute your code:
 
 <br/>
 
