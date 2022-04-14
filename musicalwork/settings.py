@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'musicalwork.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'musicaldb',
-        'USER': 'shbz',
-        'PASSWORD': 'Pass1234!!',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'localhost',#'127.0.0.1'
         'PORT': '5432',
     }
