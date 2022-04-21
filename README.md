@@ -21,8 +21,6 @@ database name in **settings.py** file located at **musicalwork/** directory.
 Create database tables by running the following commands. Please make
 sure that **Postgres** is installed.
 
-    python manage.py makemigrations
-
     python manage.py migrate
 
 After performing all the prerequisites, run the server to use it 

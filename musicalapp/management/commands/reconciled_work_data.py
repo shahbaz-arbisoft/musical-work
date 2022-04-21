@@ -12,10 +12,9 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('filepath', type=str, help='File path for csv file')
 
-    def add_contributors(self, obj, contributors, flag):
-        if flag:
-            contributors = [Contributor.objects.get_or_create(name=contributor)[0] for contributor in contributors]
-            obj.contributors.add(*contributors)
+    def add_contributors(self, obj, contributors):
+        contributors = [Contributor.objects.get_or_create(name=contributor)[0] for contributor in contributors]
+        obj.contributors.add(*contributors)
 
     def invalidate_cache(self, ISWC):
         cache.delete(ISWC)
@@ -27,7 +26,7 @@ class Command(BaseCommand):
                 csv_dict_reader = csv.DictReader(csv_file, delimiter=',')
                 row_count = 0
                 for row in csv_dict_reader:
-                    flag = True
+                    is_contributor = True
                     file_contributors = [contributor.strip() for contributor in row['contributors'].split('|')]
                     if row['iswc']:
                         musical, _ = MusicalWork.objects.get_or_create(title=row['title'], ISWC=row['iswc'])
@@ -35,10 +34,11 @@ class Command(BaseCommand):
                         try:
                             musical = MusicalWork.objects.get(title=row['title'])
                             db_contributors = musical.contributors.values_list('name', flat=True)
-                            flag = bool(set(db_contributors) & set(file_contributors))
+                            is_contributor = bool(set(db_contributors) & set(file_contributors))
                         except MusicalWork.DoesNotExist:
                             continue
-                    self.add_contributors(musical, file_contributors, flag)
+                    if is_contributor:
+                        self.add_contributors(musical, file_contributors)
                     self.invalidate_cache(row['iswc'])
                     row_count += 1
                 self.stdout.write(self.style.SUCCESS(f'{row_count} rows executed from this file'))

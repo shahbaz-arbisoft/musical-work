@@ -3,8 +3,7 @@ from django.db import models
 
 class MusicalWork(models.Model):
     title = models.CharField(max_length=300, help_text='Musical Work Title', verbose_name='Musical Work Title')
-    ISWC = models.CharField(max_length=250, unique=True, db_index=True,
-                            help_text='International Standard Musical Work Code',
+    ISWC = models.CharField(max_length=250, unique=True, help_text='International Standard Musical Work Code',
                             verbose_name='International Standard Musical Work Code')
     contributors = models.ManyToManyField('Contributor', related_name='contributors', blank=True)
 
